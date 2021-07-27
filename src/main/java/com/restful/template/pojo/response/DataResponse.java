@@ -3,29 +3,31 @@ package com.restful.template.pojo.response;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
+import java.io.Serializable;
+
 @ApiModel("响应数据")
-public class DataResponse {
+public class DataResponse<T> implements Serializable {
 
-    @ApiModelProperty("响应值1")
-    private String value1;
+    private static final long serialVersionUID = -3103375427318475059L;
 
-    @ApiModelProperty("响应值2")
-    private String value2;
+    /**
+     * 返回数据
+     */
+    private T data;
 
-    public String getValue1() {
-        return value1;
+    public DataResponse() {
     }
 
-    public void setValue1(String value1) {
-        this.value1 = value1;
+    public DataResponse(T data) {
+        this.data = data;
     }
 
-    public String getValue2() {
-        return value2;
+    public T getData() {
+        return data;
     }
 
-    public void setValue2(String value2) {
-        this.value2 = value2;
+    public DataResponse setData(T data) {
+        this.data = data;
+        return this;
     }
-
 }

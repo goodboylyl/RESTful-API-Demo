@@ -2,18 +2,35 @@ package com.restful.template.control;
 
 import com.restful.template.pojo.request.DataRequest;
 import com.restful.template.pojo.response.DataResponse;
+import com.restful.template.service.DemoService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
+
 @Api("RESTful API")
 @RestController
+@RequestMapping("/demo")
 public class DemoCtrl extends BaseCtrl{
+
+    @Resource
+    private DemoService demoService;
 
     @ApiOperation("查询数据，需保证幂等")
     @GetMapping("/data/v1")
     public DataResponse getData(){
 
+        DataResponse dataResponse = new DataResponse();
+
+        return dataResponse;
+    }
+
+    @ApiOperation("查询数据，抛出权限异常")
+    @GetMapping("/data/v2")
+    public DataResponse getDataThrowBanError(){
+
+        demoService.test1();
         DataResponse dataResponse = new DataResponse();
 
         return dataResponse;

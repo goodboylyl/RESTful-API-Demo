@@ -1,4 +1,4 @@
-package com.restful.template.config;
+package com.restful.template.common.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
