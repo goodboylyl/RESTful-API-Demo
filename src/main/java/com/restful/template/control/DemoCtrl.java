@@ -36,28 +36,29 @@ public class DemoCtrl extends BaseCtrl{
         return dataResponse;
     }
 
-    @ApiOperation("更新或请求数据")
+    @ApiOperation("添加数据")
     @PostMapping("/data/v1")
-    public DataResponse data(@RequestHeader(name = "key") String v){
+    public DataResponse addData(@RequestHeader(name = "key") String v){
 
         DataResponse dataResponse = new DataResponse();
 
         return dataResponse;
     }
 
-    @ApiOperation("添加数据，需保证幂等")
+    @ApiOperation("更新单条数据全部值，需传所有字段，接口保证幂等")
     @PutMapping("/data/v1")
-    public DataResponse addData(DataRequest dataRequest){
+    public DataResponse updateAllData(DataRequest dataRequest){
 
-        DataResponse dataResponse = new DataResponse();
+        DataResponse dataResponse = new DataResponse(dataRequest);
 
         return dataResponse;
     }
 
+    @ApiOperation("更新单条数据部分值，只传需更新字段")
     @PatchMapping("/data/v1")
     public DataResponse updateData(DataRequest dataRequest){
 
-        DataResponse dataResponse = new DataResponse();
+        DataResponse dataResponse = new DataResponse(dataRequest);
 
         return dataResponse;
     }
