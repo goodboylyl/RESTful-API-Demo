@@ -18,8 +18,8 @@ public class DemoCtrl extends BaseCtrl{
     private DemoService demoService;
 
     @ApiOperation("查询数据，需保证幂等")
-    @GetMapping("/data/v1")
-    public DataResponse getData(){
+    @GetMapping("/data/v1/{value1}")
+    public DataResponse getData(@PathVariable(required = false) String value1){
 
         DataResponse dataResponse = new DataResponse();
 
@@ -28,8 +28,9 @@ public class DemoCtrl extends BaseCtrl{
 
     @ApiOperation("查询数据，抛出权限异常")
     @GetMapping("/data/v2")
-    public DataResponse getDataThrowBanError(){
-
+    public DataResponse getDataThrowBanError(@RequestParam(required = false,defaultValue = "val1") String value1,
+                                             @RequestHeader(required = false,defaultValue = "")String token){
+        //进行鉴权之类的操作
         demoService.test1();
         DataResponse dataResponse = new DataResponse();
 
